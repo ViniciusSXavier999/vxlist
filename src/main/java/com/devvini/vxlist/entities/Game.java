@@ -23,8 +23,17 @@ public class Game {
 	@Column(name = "game_year")
 	private Integer year;
 	private String genre;
+	private String platforms;
+	private Double score;
 	private String imgUrl;
+	
+	@Column(columnDefinition = "TEXT")
 	private String shortDescription;
+	
+	/*Se a gente nao colocar um valor especifico de string, automaticamente o banco de dados vai entender como
+	 * apenas 255 char*/
+	
+	@Column(columnDefinition = "TEXT")
 	private String longDescription;
 	
 	public Game() {
@@ -33,7 +42,7 @@ public class Game {
 	
 	// construtor com argumentos para que eu tenha a possibilidade de instanciar um game e já passar os argumentos para ele
 
-	public Game(Long id, String title, Integer year, String genre, String imgUrl, String shortDescription,
+	public Game(Long id, String title, Integer year, String genre, String platforms, Double score, String imgUrl, String shortDescription,
 			String longDescription) {
 		super();
 		// esse this faz referencia ao atributo do objeto, aqui eu estou dizendo o id do objeto recebe o 
@@ -42,6 +51,8 @@ public class Game {
 		this.title = title;
 		this.year = year;
 		this.genre = genre;
+		this.platforms = platforms;
+		this.score = score;
 		this.imgUrl = imgUrl;
 		this.shortDescription = shortDescription;
 		this.longDescription = longDescription;
@@ -77,6 +88,22 @@ public class Game {
 
 	public void setGenre(String genre) {
 		this.genre = genre;
+	}
+	
+	public String getPlatforms() {
+		return platforms;
+	}
+
+	public void setPlatforms(String platforms) {
+		this.platforms = platforms;
+	}
+
+	public Double getScore() {
+		return score;
+	}
+
+	public void setScore(Double score) {
+		this.score = score;
 	}
 
 	public String getImgUrl() {
