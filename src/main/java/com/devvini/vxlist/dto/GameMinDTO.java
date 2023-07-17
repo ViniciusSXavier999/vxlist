@@ -1,5 +1,9 @@
 package com.devvini.vxlist.dto;
 
+/*Essa classe basicamente sera criada somente para mim filtrar alguns pontos especificos
+ * da minha aplicação e da minha lista de games.*/
+
+// ela nao esta mapeada com o banco, ela é uma classe independente 
 import com.devvini.vxlist.entities.Game;
 
 public class GameMinDTO {
@@ -15,7 +19,8 @@ public class GameMinDTO {
 	}
 
 	/*
-	 * Nesse caso eu vou instanciar um GameMinDTO instanciando os dados da minha classe GAME COPIANDO OS DADOS DO GAME
+	 * Nesse caso eu vou instanciar um GameMinDTO instanciando os dados da minha classe GAME COPIANDO OS 
+	 * DADOS DO GAME
 	 * PARA O DTO
 	 * */
 	public GameMinDTO(Game entity) {
