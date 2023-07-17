@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.devvini.vxlist.dto.GameDTO;
 import com.devvini.vxlist.dto.GameMinDTO;
 import com.devvini.vxlist.entities.Game;
 import com.devvini.vxlist.repositories.GameRepository;
@@ -31,6 +33,9 @@ public class GameService {
 	// AGORA VAI VIR O DTO, PORQUE EU QUERO SOMENTE OS DADOS QUE ESTÃO LÁ
 	// EU VOU CRIAR UMA LISTA EQUIVALENTE TRANSFORMANDO TUDO QUE FOR GAME EM GAMEMINDTO
 	
+	/*readOnly -> Nesse caso eu estou assegurando que nao vou fazer operação escrita, ficando mais rapido
+	 * dessa forma*/
+	@Transactional(readOnly = true) 
 	public List<GameMinDTO> findAll(){
 		List<Game> result = gameRepository.findAll();
 		
@@ -44,6 +49,15 @@ public class GameService {
 		
 		List<GameMinDTO> dto = result.stream().map(x -> new GameMinDTO(x)).toList(); 
 		return dto;
+	}
+	
+	@Transactional(readOnly = true) 
+	// agora eu vou criar um método para buscar por ID
+	public GameDTO findById(Long id){
+		Game result = gameRepository.findById(id).get();
+		// agpra vou converter um objeto Game para DTO ? vou usar o construtor que a gente fez no GameDTO
+		return new GameDTO(result);
+		
 	}
 
 }
